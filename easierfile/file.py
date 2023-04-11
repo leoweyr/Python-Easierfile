@@ -20,7 +20,7 @@ class File:
         self.__m_file.close()
         return self.__m_content
 
-    def ReWrite(self,content):
+    def Rewrite(self,content):
         self.__m_file = open(self.__m_filePath, "w")
         self.__m_file.write(content)
         self.__m_file.close()
