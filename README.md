@@ -7,6 +7,21 @@
 
 An easier-to-use Python package that object-oriented encapsulates Python traditional built-in file operations. It's also easier than `easygui`. o((>ω< ))o
 
+## 💿Obtainment
+
+The source code is currently hosted on Github at: https://github.com/leoweyr/Python-Easierfile
+
+Binary installers for the latest released version are available at the [Python Package Index (PyPI)](https://pypi.org/project/easierfile/).
+
+```sh
+# PyPI
+pip install easierfile
+```
+
+## 🔗Dependencies
+
+- [Dynoptimdict - A dynamic data dict class that inherits and overrides the built-in dict class for special purposes. That provides real-time access to dynamic data, while still allowing the option to get only the specified data without calculating all. It adheres to the concept of program optimization which avoids loading if not used, saving both memory and time](https://github.com/leoweyr/Python-Dynoptimdict)
+
 ## ⚖️License
 
 [MIT](https://github.com/leoweyr/Python-Easierfile/blob/main/LICENSE)

@@ -21,7 +21,7 @@ else:  # For Linux, Unix, MacOS.
 
 
 import os
-
+from dynoptimdict import DynamicDataDict as Dict
 
 class File:
     def __init__(self, file_path, is_auto_create=True, is_occupy=True):
@@ -54,7 +54,7 @@ class File:
                 pass
 
     def __lock(self, is_lock):
-        if os.path.isfile(self.__m_info["path"]):
+        if self.status["exist"]:
             if is_lock:
                 self.__m_file = open(self.__m_info["path"], "w")
                 _lock_file(self.__m_file)
@@ -62,7 +62,7 @@ class File:
             else:
                 _unlock_file(self.__m_file)
                 self.__m_file.close()
-                self.__m_is_lock = not is_lock
+                self.__m_is_lock = is_lock
         else:
             if is_lock:
                 raise FileNotFoundError("File was about to be occupied, but not found: " + self.__m_info["path"])
@@ -70,7 +70,7 @@ class File:
                 raise FileNotFoundError("File was about to be unoccupied, but not found: " + self.__m_info["path"])
 
     def create(self):
-        if not os.path.isfile(self.__m_info["path"]):
+        if not self.status["exist"]:
             if not os.path.exists(self.__m_info["dir_path"]):  # Create the file directory if it doesn't exist, so that code<open()> doesn't throw the exception.
                 os.mkdir(self.__m_info["dir_path"])
             try:
@@ -87,11 +87,11 @@ class File:
     def delete(self):
         if self.__m_is_lock:
             self.__lock(False)
-        if os.path.isfile(self.__m_info["path"]):
+        if self.status["exist"]:
             os.remove(self.__m_info["path"])
 
     def rewrite(self,content):
-        if os.path.isfile(self.__m_info["path"]):
+        if self.status["exist"]:
             file_temp = open(self.__m_info["path"], "w")
             file_temp.write(content)
             file_temp.close()
@@ -99,7 +99,7 @@ class File:
             raise FileNotFoundError("File not found: " + self.__m_info["path"])
 
     def append(self,content):
-        if os.path.isfile(self.__m_info["path"]):
+        if self.status["exist"]:
             file_temp = open(self.__m_info["path"], "a")
             file_temp.write(content)
             file_temp.close()
@@ -108,7 +108,7 @@ class File:
 
     @property
     def content(self):
-        if os.path.isfile(self.__m_info["path"]):
+        if self.status["exist"]:
             file_temp = open(self.__m_info["path"], "r")
             content = file_temp.read()
             file_temp.close()
@@ -119,3 +119,17 @@ class File:
     @property
     def info(self):
         return self.__m_info
+
+    @property
+    def status(self):
+        def get_status_file_lock():
+            return self.__m_is_lock
+
+        def get_status_exist():
+            return os.path.isfile(self.__m_info["path"])
+
+        status = Dict()
+        # Pass function pointers for obtaining dynamic data into object:Dict<status>.
+        status["file_lock"] = get_status_file_lock
+        status["exist"] = get_status_exist
+        return status
