@@ -56,7 +56,7 @@ class File:
     def __lock(self, is_lock):
         if self.status["exist"]:
             if is_lock:
-                self.__m_file = open(self.__m_info["path"], "w")
+                self.__m_file = open(self.__m_info["path"])
                 _lock_file(self.__m_file)
                 self.__m_is_lock = is_lock
             else:
