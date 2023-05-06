@@ -21,15 +21,13 @@ File(file_path, is_auto_create, is_occupy)
     </tr>
     <tr>
     	<td><code>File().info</code></td>
-        <td>Return a dict of file attribute information.</br>● path: the absolute path of the file</br>● dir_path: the absolute path of the directory where the file is located</br>● full_name: the name of the file</br>● name: the name of the file without file extension</br>● ext: the extension of the file</td>
+        <td>Return a dict of file attribute information.</br>● path: the absolute path of the file</br>● dir_path: the absolute path of the directory where the file is located</br>● full_name: the name of the file</br>● name: the name of the file without file extension</br>● ext: the extension of the file</br>● encoding: the encoding of the file</td>
     </tr>
 	<tr>
 		<td><code>File().status</code></td>
         <td>Return a dict of file status information.</br>● file_lock: whether file lock is on</br>● exist: whether the file exist</td>
 	</tr>
 </table>
-
-
 
 ### Operation
 

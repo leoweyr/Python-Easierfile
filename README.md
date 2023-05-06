@@ -21,6 +21,7 @@ pip install easierfile
 ## 🔗Dependencies
 
 - [Dynoptimdict - A dynamic data dict class that inherits and overrides the built-in dict class for special purposes. That provides real-time access to dynamic data, while still allowing the option to get only the specified data without calculating all. It adheres to the concept of program optimization which avoids loading if not used, saving both memory and time](https://github.com/leoweyr/Python-Dynoptimdict)
+- [Chardet - The universal character encoding detector](https://github.com/chardet/chardet)
 
 ## ⚖️License
 

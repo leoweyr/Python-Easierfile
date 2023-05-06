@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "easierfile"
-version = "2.2.0"
+version = "2.3.0"
 description = "An easier-to-use Python package that object-oriented encapsulates Python traditional built-in file operations."
 license = "MIT"
 authors = ["leoweyr <leoweyr@foxmail.com>"]
@@ -14,7 +14,8 @@ packages = [{include = "easierfile"}]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-dynoptimdict = "^1.0.0"
+dynoptimdict = "^2.0.0"
+chardet = "^5.1.0"
 
 
 [build-system]
