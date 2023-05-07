@@ -56,7 +56,7 @@ class File:
                 pass
 
     def __lock(self, is_lock):
-        if self.status["exist"]:
+        if self.state["exist"]:
             if is_lock:
                 self.__m_file = open(self.__m_static_info["path"])
                 _lock_file(self.__m_file)
@@ -72,7 +72,7 @@ class File:
                 raise FileNotFoundError("File was about to be unoccupied, but not found: " + self.__m_static_info["path"])
 
     def create(self):
-        if not self.status["exist"]:
+        if not self.state["exist"]:
             if not os.path.exists(self.__m_static_info["dir_path"]):  # Create the file directory if it doesn't exist, so that code<open()> doesn't throw the exception.
                 os.mkdir(self.__m_static_info["dir_path"])
             try:
@@ -89,11 +89,11 @@ class File:
     def delete(self):
         if self.__m_is_lock:
             self.__lock(False)
-        if self.status["exist"]:
+        if self.state["exist"]:
             os.remove(self.__m_static_info["path"])
 
     def rewrite(self,content):
-        if self.status["exist"]:
+        if self.state["exist"]:
             """
             Automatically obtain the most suitable encoding format for the input content.
             
@@ -106,7 +106,7 @@ class File:
             raise FileNotFoundError("File not found: " + self.__m_static_info["path"])
 
     def append(self,content):
-        if self.status["exist"]:
+        if self.state["exist"]:
             file_temp = open(self.__m_static_info["path"], "a", encoding=chardet.detect(content.encode())["encoding"])
             file_temp.write(content)
             file_temp.close()
@@ -115,7 +115,7 @@ class File:
 
     @property
     def content(self):
-        if self.status["exist"]:
+        if self.state["exist"]:
             """
             Automatically obtain the most suitable encoding format for the output content.
             
@@ -154,7 +154,7 @@ class File:
         return info
 
     @property
-    def status(self):
+    def state(self):
         def get_status_file_lock():
             return self.__m_is_lock
 

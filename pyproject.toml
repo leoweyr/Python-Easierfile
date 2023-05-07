@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "easierfile"
-version = "2.3.0"
+version = "3.0.0"
 description = "An easier-to-use Python package that object-oriented encapsulates Python traditional built-in file operations."
 license = "MIT"
 authors = ["leoweyr <leoweyr@foxmail.com>"]
